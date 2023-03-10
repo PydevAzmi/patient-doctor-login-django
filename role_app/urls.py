@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import home
+from .views import login
 app_name = 'role_app'
 urlpatterns = [
-    path('' , home , name= 'home_page'),
-    
+    path('' , login , name= 'home_page'),
+
 ]

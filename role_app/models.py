@@ -3,8 +3,13 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext as _ 
 # Create your models here.
 class User(AbstractUser):
+    ROLES = (
+        ('Doctor','doctor'),
+        ('Paient','paient')
+    )
     is_patient = models.BooleanField(_("Is Patient"), default= False)
     is_doctor = models.BooleanField(_("Is Doctor"), default= False)
+    role = models.CharField(_("Role"), max_length=20, choices=ROLES ,default= 'patient')
 
 class Paient(models.Model):
     paient = models.OneToOneField("User",related_name ="Patient_User",
