@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm ,AuthenticationForm
 from .models import User
 class SignUpForm(UserCreationForm):
-    bar = forms.ChoiceField( widget=forms.RadioSelect(), choices=[User.ROLES], required=True)
+    
     def __init__(self, *args , **kwargs ) :
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs.update({
