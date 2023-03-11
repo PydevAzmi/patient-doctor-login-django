@@ -41,3 +41,21 @@ class SignUpForm(UserCreationForm):
         widgets={
             'role': forms.RadioSelect()
         }
+
+class LoginForm(forms.Form):
+        username = forms.CharField(
+            widget= forms.TextInput(
+                attrs={
+                    'required' : '',
+                    'type'     : "username",
+                    'id'       : "loginName",
+                    'class'    : "form-control" }))
+        
+        password = forms.CharField(
+            widget=forms.PasswordInput(
+                attrs={
+                    'required' : '',
+                    'type'     :"password",
+                    'id'       :"loginPassword",
+                    'class'    :"form-control" }))
+                
