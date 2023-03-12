@@ -39,17 +39,17 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                 
-                {% if login_form.errors %}
-                    {% for field in login_form %}
-                        {% for error in field.errors %}
-                        <div class="alert alert-danger">
-                            <p> {{ error }} </p>
-                        </div>
-                        {% endfor %}
-                    {% endfor %}
-                {% endif %}
+               
                 <form method = "post" enctype="multipart/form-data" >
-
+                    {% if login_form.errors %}
+                        {% for field in login_form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <p> {{ error }} </p>
+                            </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                     {% csrf_token %}
 
                     {% if messages %}
@@ -117,7 +117,7 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" value="Log In" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    <button type="submit" name="login" value="Login"  class="btn btn-primary btn-block mb-4">Sign in</button>
 
                     <!-- Register buttons -->
                     <div class="text-center">
@@ -127,16 +127,17 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                {% if register_form.errors %}
-                    {% for field in register_form %}
-                        {% for error in field.errors %}
-                        <div class="alert alert-danger">
-                            <p> {{ error }} </p>
-                        </div>
-                        {% endfor %}
-                    {% endfor %}
-                {% endif %}
+                
                 <form method="post" enctype="multipart/form-data">
+                            {% if register_form.errors %}
+                                {% for field in register_form %}
+                                    {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <p> {{ error }} </p>
+                                    </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                     {% csrf_token %}
                     <div class="text-center mb-3">
                         <p>Sign up with:</p>
@@ -217,7 +218,7 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" value="create" class="btn btn-primary btn-block mb-3">Sign in</button>
+                    <button type="submit" name="register"  value="create" class="btn btn-primary btn-block mb-3">Sign in</button>
                 </form>
             </div>
         </div>

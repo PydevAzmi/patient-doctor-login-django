@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm ,AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm 
 from .models import User
 class SignUpForm(UserCreationForm):
     
@@ -42,20 +42,22 @@ class SignUpForm(UserCreationForm):
             'role': forms.RadioSelect()
         }
 
-class LoginForm(forms.Form):
-        username = forms.CharField(
-            widget= forms.TextInput(
-                attrs={
-                    'required' : '',
-                    'type'     : "username",
-                    'id'       : "loginName",
-                    'class'    : "form-control" }))
-        
-        password = forms.CharField(
-            widget=forms.PasswordInput(
-                attrs={
-                    'required' : '',
-                    'type'     :"password",
-                    'id'       :"loginPassword",
-                    'class'    :"form-control" }))
-                
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.widgets.TextInput(attrs={
+                'class'    : 'form-control',
+                'required' : '',
+                'type'     : "username",
+                'id'       : "loginName",
+                'class'    : "form-control"
+            })
+        self.fields['password'].widget = forms.widgets.PasswordInput(attrs={
+                'class'    : 'form-control',
+                'required' : '',
+                'type'     :"password",
+                'id'       :"loginPassword",
+                'class'    :"form-control" })
+    class Meta:
+        model = User
+        fields = ('username', 'password')
